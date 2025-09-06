@@ -102,8 +102,9 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
 
 "MusicSignServerUrl": "https://ss.xingzhige.com/music_card/card"
 
-按照以下格式添加ws反代
+按照以下格式添加或修改ws反代，默认应存在一个127.0.0.1和8080端口的配置，修改端口和suffix即可
 
+添加新的ws反代请在{}后，[]内添加，每一项{}之间用,隔开
 ```json
 "Implementations": [
     {
