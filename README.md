@@ -1,4 +1,4 @@
-# 快速上手250906
+# 快速上手
 
 #### 本文档将介绍如何快速部署Haruki分布式客户端，并对客户端进行配置。
 
@@ -93,7 +93,7 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
 
 如果是linux系统，需要使用chmod +x Lagrange.OneBot给予可执行权限
 
-然后运行，第一次运行后先退出，修改生成的appsettings.json文件
+然后运行，第一次运行后先退出，**修改生成的appsettings.json文件**
 
 ### 需要修改的地方:
 (版本号无法公开传播请询问群友或者通过lgr官方群或者readme获取)
@@ -193,6 +193,10 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
     * 修改websocketClients的值（和Windows的配置相同，复制粘贴ok）
     * 保存后再次登录即可
     * Linux也可使用webui进行配置
+  
+* 更多安装方式请访问https://napneko.pages.dev/guide/boot/Shell
+  
+
 
 ## 客户端使用与验证
 
