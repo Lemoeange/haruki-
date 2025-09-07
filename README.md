@@ -1,4 +1,4 @@
-# 快速上手 25/09/06
+# 快速上手 25/09/08
 
 #### 本文档将介绍如何快速部署Haruki分布式客户端，并对客户端进行配置。
 
@@ -16,20 +16,24 @@
 
 ## Haruki客户端部署
 
-在群文件中下载对应系统的客户端与配置文件，并放在同一目录下。文件目录应与下图一致 
+在群文件中下载对应系统的客户端与配置文件
+
+windows将配置文件放在解压出的文件同目录文件目录，Linux应该无需解压.app文件
 
 windows下载zip压缩包后请不要使用系统自带默认解压，会解压失败
 
 推荐使用7zip解压：https://www.7-zip.org/
 
 如果官网下载失败可以在群文件里找到win-x64安装包:7z2501-x64.exe
+
+文件结构应与下列一致
 ```
 (最好是纯英文字符的新建文件夹)
 ├ config.json
 └ HarukiClient-xxx-v1.1.7.exe/.app
 ```
 
-对应系统的客户端包名
+最新的对应系统客户端包名
 
 ```text
 Windows       HarukiClient-Windows-x64-v1.1.7.exe
@@ -68,13 +72,13 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
 }
 ```
 
-客户端的配置告一段落，接下来进入Bot端部署
+**客户端的配置告一段落，接下来进入Bot端部署**
 
-## Bot端部署
+# Bot端部署
 
-#### 请使用支持 **OneBot V11** 协议的 QQ 客户端
+### 请使用支持 **OneBot V11** 协议的 QQ 客户端
 
-# 以下是2种推荐使用的方案
+## 以下是2种推荐使用的方案
 
 ## 1.Lagrange.OneBot
 
@@ -89,7 +93,7 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
   * 一般windows设备选择win-x64_net9.0
   * 一般linux服务器选择linux-x64_net9.0
 
-接着，从\Lagrange.OneBot\bin\Release\net9.0\linux-x64\publish中提取出Lagrange.OneBot文件
+接着，从\Lagrange.OneBot\bin\Release\net9.0\linux-x64(win-x64)\publish中提取出Lagrange.OneBot文件
 
 如果是linux系统，需要使用chmod +x Lagrange.OneBot给予可执行权限
 
@@ -102,9 +106,12 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
 
 "MusicSignServerUrl": "https://ss.xingzhige.com/music_card/card"
 
-按照以下格式添加或修改ws反代，默认应存在一个127.0.0.1和8080端口的配置，修改端口和suffix即可
+如果遇到提示qq版本过低无法登录，一般签名服务器修改最新的版本号即可
+
+按照以下格式添加或修改ws反代，默认应存在一个127.0.0.1和**8080**端口的配置，**请修改suffix为/ws，端口为8000**
 
 添加新的ws反代请在{}后，[]内添加，每一项{}之间用,隔开
+
 ```json
 "Implementations": [
     {
@@ -119,9 +126,10 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
 ]
 ```
 
-保存后再次运行一次，扫码登录bot账号即可
+确认括号成对后保存，再次运行lgr，扫码登录bot账号即可
 
 ## 2.Napcat
+
 首先，需要有一台服务器或者24小时开机联网的电脑，以保证您部署的bot能一直运行。
 
 其次，请在该设备上下载 **Napcat**。
@@ -168,10 +176,9 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
     "loginRate": 3, // 每分钟登录次数限制
     }
     
-  * 最近有人通过扫描公网未修改默认密码与端口的nc bot向qq群发送不良消息，导致账号或群被封禁，25/09/06上午5:55点左右bot出现风控可能是上述原因
   * 使用客户端或者webui时，点击左侧**网络配置**选项，右侧左上角新建选择**websocket客户端**，url填入
     ws://127.0.0.1:8000/ws
-  * 名称随意，记得点击**左上角启动**并保存(如需添加其他bot地址，请重复上述操作)
+  * 名称随意，记得点击**左上角启动**并保存(如需添加其他bot地址，请重复上述操作并填入对应url)
 
 - Debian/Ubuntu/Centos等linux系统
 
@@ -195,13 +202,13 @@ Linux       HarukiClient-Linux-amd64-v1.1.7-glibc.app
     * 保存后再次登录即可
     * Linux也可使用webui进行配置
   
-* 更多安装方式请访问https://napneko.pages.dev/guide/boot/Shell
+* 更多更详细安装方式请访问https://napneko.pages.dev/guide/boot/Shell
   
 
 
 ## 客户端使用与验证
 
-配置完毕bot端后使用管理员权限运行/sudo运行
+配置完毕bot端后使用管理员权限运行/sudo运行Haruki客户端
 
 Windows
 
@@ -251,7 +258,7 @@ Haruki Client v1.1.7
 Haruki Bot Id: <YourBotId>
 ```
 
-如果没有回复，请检查客户端运行是否报错、OneBot 日志是否报错。
+如果没有回复，请检查客户端运行是否报错、OneBot 日志是否报错。并重新对照bot与客户端配置
 
 使用lgr后台每几分钟出现一大串warn报错时请先确定bot反馈，若bot正常响应请无视。
 
